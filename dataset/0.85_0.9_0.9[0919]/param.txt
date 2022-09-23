@@ -1,0 +1,14 @@
+参数：deta=0.85  low=0.9  theta = 0.9  fact = 5  dataloader(重复次数)<7
+
+if dataname == 'd_sentiment':
+    df_lo = df_low.groupby('id').tail(6)  # 筛选后6个，概率都小于deta
+    df_lo = df_lo.groupby('id').head(6)  # 筛选后6个，概率都小于deta
+    step = 8  # hwx: step是【CP+CE数量】，工人总数
+
+df_hi_l = pd.read_csv(input_file + dataname + '_high_0.85.csv')
+df_hi2 = df_hi_l.groupby('id').head(1)
+# df_hi2 = df_hi2.groupby('id').tail(1)
+
+# **zhenh** 不用什么low high了， 这里deta只是一个挑选工人的手段
+df_hi1 = df_hi.groupby('id').head(1)
+# df_hi1 = df_hi1.groupby('id').tail(2)
